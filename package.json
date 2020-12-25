@@ -1,0 +1,17 @@
+{
+  "name": "react-copy-image",
+  "version": "1.0.0",
+  "description": "copy image into clipboard",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-copy-image"
+  ],
+  "author": "susie chang",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^17.0.1"
+  }
+}
