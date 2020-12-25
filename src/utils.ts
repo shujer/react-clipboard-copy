@@ -63,7 +63,9 @@ export async function imageToBlob(
     });
     return await toBlob;
   }
-  throw Error('[props target] only support "HTMLImageElement | HTMLCanvasElement | string"')
+  throw Error(
+    '[props target] only support "HTMLImageElement | HTMLCanvasElement | string"'
+  );
 }
 
 export function isDataURI(target: unknown): target is string {
@@ -76,22 +78,13 @@ export function isDataURI(target: unknown): target is string {
 }
 
 export function isImageElement(target: unknown): target is HTMLImageElement {
-  if (!!(target as HTMLImageElement).src) {
-    return true;
-  }
-  return false;
+  return target && !!(target as HTMLImageElement).src;
 }
 
 export function isCanvasElement(target: unknown): target is HTMLCanvasElement {
-  if (!!(target as HTMLCanvasElement).toBlob) {
-    return true;
-  }
-  return false;
+  return target && !!(target as HTMLCanvasElement).toBlob;
 }
 
 export function isImageSrc(target: unknown): target is string {
-  if (typeof target === "string" && /^(http)/.test(target)) {
-    return true;
-  }
-  return false;
+  return typeof target === "string" && /^(http)/.test(target);
 }
