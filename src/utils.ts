@@ -63,6 +63,7 @@ export async function imageToBlob(
     });
     return await toBlob;
   }
+  console.log(target);
   throw Error(
     '[props target] only support "HTMLImageElement | HTMLCanvasElement | string"'
   );
@@ -87,4 +88,29 @@ export function isCanvasElement(target: unknown): target is HTMLCanvasElement {
 
 export function isImageSrc(target: unknown): target is string {
   return typeof target === "string" && /^(http)/.test(target);
+}
+
+export function textToBlob(target: string = "") {
+  return new Blob([target], { type: "text/plain" });
+}
+
+export function createFakeInput(target: string): HTMLInputElement {
+  const input = document.createElement("input");
+  input.value = target;
+  input.style.position = "absolute";
+  input.style.left = "-9999px";
+  document.body.appendChild(input);
+  return input;
+}
+
+export function selectFakeTarget(target: HTMLInputElement) {
+  let selection = window.getSelection();
+  let range = document.createRange();
+  range.selectNode(target);
+  selection!.removeAllRanges();
+  selection!.addRange(range);
+  return () => {
+    selection!.removeAllRanges();
+    document.body.removeChild(target);
+  };
 }

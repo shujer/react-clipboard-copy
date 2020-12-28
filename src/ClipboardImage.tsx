@@ -8,7 +8,7 @@ import {
 
 export type ChangeStatus = "loading" | "done" | "error";
 
-export interface CopyProps {
+export interface ClipboardImageProps {
   /**
    * copy target
    */
@@ -29,12 +29,9 @@ export interface CopyProps {
 /**
  * mack sure children element can receive "onClick" event props
  */
-const ClipboardImage: React.FC<CopyProps> = (props) => {
+const ClipboardImage: React.FC<ClipboardImageProps> = (props) => {
   const { target, children, disabled = false, onChange } = props;
   const copyImage = async () => {
-    if (!target) {
-      return;
-    }
     try {
       if (onChange) {
         onChange("loading");
@@ -45,7 +42,7 @@ const ClipboardImage: React.FC<CopyProps> = (props) => {
         //@ts-ignore
         !window.ClipboardItem ||
         //@ts-ignore
-        navigator.clipboard?.write
+        !navigator.clipboard?.write
       ) {
         throw Error("broswer not supported!");
       }
