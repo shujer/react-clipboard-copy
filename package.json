@@ -1,10 +1,10 @@
 {
-  "name": "react-awesome-copy",
+  "name": "rc-clipboard-copy",
   "version": "1.0.0",
-  "description": "copy image into clipboard",
-  "module": "dist/index.esm.js",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "description": "copy image or text into clipboard",
+  "module": "dist/rc-clipboard-copy.esm.js",
+  "main": "dist/rc-clipboard-copy.js",
+  "types": "dist/rc-clipboard-copy.d.ts",
   "scripts": {
     "watch": "rollup --config rollup.config.js --watch",
     "build": "rimraf dist/ && rollup --config rollup.config.js",
@@ -12,15 +12,17 @@
     "prepublishOnly": "npm run build"
   },
   "keywords": [
-    "react-awesome-copy"
+    "react",
+    "clipboard",
+    "copy"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shujer/react-awesome-copy.git"
+    "url": "git+https://github.com/shujer/react-clipboard-copy.git"
   },
-  "homepage": "https://github.com/shujer/react-awesome-copy",
+  "homepage": "https://github.com/shujer/react-clipboard-copy",
   "author": {
-    "name": "shujer",
+    "name": "ephemeron",
     "email": "dwellerofuniverse@gmail.com"
   },
   "files": [

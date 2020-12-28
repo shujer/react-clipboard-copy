@@ -1,4 +1,4 @@
-//config references https://github.com/alibaba/ali-react-table
+//references: https://github.com/alibaba/ali-react-table
 import pkg from "./package.json";
 import resolve from "@rollup/plugin-node-resolve";
 import typescript from "rollup-plugin-typescript2";
@@ -23,7 +23,7 @@ const config = (arg) => ({
   ...arg,
 });
 
-const input = ["src/index.ts"];
+const input = ["src/rc-clipboard-copy.ts"];
 
 export default [
   config({
@@ -32,7 +32,7 @@ export default [
       dir: "dist",
       format: "esm",
       entryFileNames: "[name].esm.js",
-      chunkFileNames: "chunks/react-copy-image-[name]-[hash].esm.js",
+      chunkFileNames: "chunks/rc-clipboard-copy-[name]-[hash].esm.js",
     },
   }),
   config({
@@ -41,7 +41,7 @@ export default [
       dir: "dist",
       format: "cjs",
       entryFileNames: "[name].js",
-      chunkFileNames: "chunks/react-copy-image-[name]-[hash].js",
+      chunkFileNames: "chunks/rc-clipboard-copy-[name]-[hash].js",
     },
   }),
   config({
@@ -52,7 +52,7 @@ export default [
       name: "Clipboard",
       globals: { react: "React" },
       entryFileNames: "[name].iife.js",
-      chunkFileNames: "chunks/react-copy-image-[name]-[hash].iife.js",
+      chunkFileNames: "chunks/rc-clipboard-copy-[name]-[hash].iife.js",
     },
   }),
 ];

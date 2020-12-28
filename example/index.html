@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>React Copy Clipboard</title>
 </head>
 
 <body>
@@ -12,10 +12,9 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
-    <script src="../dist/index.iife.js"></script>
+    <script src="../dist/rc-clipboard-copy.iife.js"></script>
     <script type="text/babel">
-        const ClipboardImage = Clipboard.ClipboardImage
-        const ClipboardText = Clipboard.ClipboardText
+        const { ClipboardImage, ClipboardText } = Clipboard
         const App = () => {
             const [imageRef, setImageRef] = React.useState()
             return (
