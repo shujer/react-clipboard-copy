@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="../dist/index.iife.js"></script>
+    <script type="text/babel">
+        const ClipboardImage = Clipboard.ClipboardImage
+        const ClipboardText = Clipboard.ClipboardText
+        const App = () => {
+            const [imageRef, setImageRef] = React.useState()
+            return (
+                <div>
+                    <img ref={ref => setImageRef(ref)} src="./assets/logo.png" />
+                    <ClipboardImage target={imageRef} onChange={(s, e) => {
+                        console.log('status', s)
+                        if (e) {
+                            console.error(s, e)
+                        }
+                    }}>
+                        <button>复制图片</button>
+                    </ClipboardImage>
+                    <ClipboardText target={"hello world"} onChange={(s, e) => {
+                        console.log('status', s)
+                        if (e) {
+                            console.error(s, e)
+                        }
+                    }}>
+                        <button>复制文字</button>
+                    </ClipboardText>
+                </div>
+            );
+        };
+        const domContainer = document.querySelector('#root');
+        ReactDOM.render(React.createElement(App), domContainer);
+    </script>
+</body>
+
+</html>
