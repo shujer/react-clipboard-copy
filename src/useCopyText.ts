@@ -83,7 +83,7 @@ export const useCopyText = (props: ClipboardTextHooksProps) => {
         (e) => e
       );
     },
-    [copyText, copyTarget,auto, disabled,]
+    [copyText, copyTarget, methods.join("-")]
   );
 
   useEffect(() => {
@@ -96,7 +96,7 @@ export const useCopyText = (props: ClipboardTextHooksProps) => {
       return;
     }
     copy(target);
-  }, [target,  copy]);
+  }, [target, auto, disabled, copy]);
 
   return { status, error: err, copy };
 };

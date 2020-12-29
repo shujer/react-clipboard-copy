@@ -56,7 +56,7 @@ export const useCopyImage = (props: ClipboardImageHooksProps) => {
         (e) => e
       );
     },
-    [copyImage,auto, disabled]
+    [copyImage, methods.join("-")]
   );
 
   useEffect(() => {
