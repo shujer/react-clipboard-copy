@@ -1,3 +1,4 @@
-import ClipboardImage from "./ClipboardImage";
-import ClipboardText from "./ClipboardText";
-export { ClipboardImage, ClipboardText };
+export { default as ClipboardImage } from "./ClipboardImage";
+export { default as ClipboardText } from "./ClipboardText";
+export * from "./useCopyImage";
+export * from "./useCopyText";

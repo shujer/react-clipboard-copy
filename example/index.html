@@ -14,28 +14,39 @@
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
     <script src="../dist/rc-clipboard-copy.iife.js"></script>
     <script type="text/babel">
-        const { ClipboardImage, ClipboardText } = Clipboard
+        const { ClipboardImage, ClipboardText, useCopyText } = Clipboard
         const App = () => {
             const [imageRef, setImageRef] = React.useState()
+            const { copy, error, status } = useCopyText({})
             return (
                 <div>
                     <img ref={ref => setImageRef(ref)} src="./assets/logo.png" />
-                    <ClipboardImage target={imageRef} onChange={(s, e) => {
-                        console.log('status', s)
-                        if (e) {
-                            console.error(s, e)
-                        }
-                    }}>
+                    <ClipboardImage
+                        target={imageRef}
+                        disabled
+                        onChange={(s, e) => {
+                            console.log('status', s)
+                            if (e) {
+                                console.error(s, e)
+                            }
+                        }}>
                         <button>复制图片</button>
                     </ClipboardImage>
-                    <ClipboardText target={"hello world"} onChange={(s, e) => {
-                        console.log('status', s)
-                        if (e) {
-                            console.error(s, e)
-                        }
-                    }}>
+                    <ClipboardText
+                        target={"hello world"}
+                        disabled
+                        methods={["clipboard", "execCommand"]}
+                        onChange={(s, e) => {
+                            console.log('status', s)
+                            if (e) {
+                                console.error(s, e)
+                            }
+                        }}>
                         <button>复制文字</button>
                     </ClipboardText>
+                    <button onClick={() => copy("hello word2")}>
+                        复制文字2
+                    </button>
                 </div>
             );
         };

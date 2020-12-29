@@ -63,7 +63,6 @@ export async function imageToBlob(
     });
     return await toBlob;
   }
-  console.log(target);
   throw Error(
     '[props target] only support "HTMLImageElement | HTMLCanvasElement | string"'
   );
@@ -94,23 +93,34 @@ export function textToBlob(target: string = "") {
   return new Blob([target], { type: "text/plain" });
 }
 
-export function createFakeInput(target: string): HTMLInputElement {
-  const input = document.createElement("input");
-  input.value = target;
+export function selectFakeInput(text: string) {
+  const input = document.createElement("textarea");
+  input.value = text;
   input.style.position = "absolute";
   input.style.left = "-9999px";
   document.body.appendChild(input);
-  return input;
-}
-
-export function selectFakeTarget(target: HTMLInputElement) {
   let selection = window.getSelection();
   let range = document.createRange();
-  range.selectNode(target);
+  range.selectNode(input);
   selection!.removeAllRanges();
   selection!.addRange(range);
   return () => {
     selection!.removeAllRanges();
-    document.body.removeChild(target);
+    document.body.removeChild(input);
   };
+}
+
+const noop = <T>(_result: T) => false;
+
+export async function interrupt<T>(
+  promises: (() => Promise<T>)[],
+  checking: (result: T) => boolean = noop
+) {
+  for (let promise of promises) {
+    let result = await promise();
+    let isEnd = checking(result);
+    if (isEnd) {
+      return;
+    }
+  }
 }
