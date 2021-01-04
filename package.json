@@ -28,7 +28,7 @@
   "files": [
     "dist"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.1"
   },
