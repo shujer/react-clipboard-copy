@@ -22,22 +22,16 @@ export interface ClipboardImageProps
 export interface ClipboardTextProps
   extends ClipboardProps<TextCopyTarget, TextCopyMethod> {}
 
-export interface ClipboardHooksProps<Target, Method> {
-  target?: Target;
+export interface ClipboardHooksProps<Method> {
   /**
    * method to copy text，try the next method when it fails
    * default ["clipboard"]
    */
   methods?: Method[];
-  /**
-   * default false
-   */
-  auto?: boolean;
-  disabled?: boolean;
 }
 
 export interface ClipboardTextHooksProps
-  extends ClipboardHooksProps<TextCopyTarget, TextCopyMethod> {}
+  extends ClipboardHooksProps<TextCopyMethod> {}
 
 export interface ClipboardImageHooksProps
-  extends ClipboardHooksProps<ImageCopyTarget, ImageCopyMethod> {}
+  extends ClipboardHooksProps<ImageCopyMethod> {}

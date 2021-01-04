@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import {
   ChangeStatus,
   ClipboardTextHooksProps,
@@ -12,14 +12,9 @@ import {
 } from "./utils";
 
 export const useCopyText = (props: ClipboardTextHooksProps) => {
-  const {
-    target,
-    auto = false,
-    methods = ["clipboard"],
-    disabled = false,
-  } = props;
-  const [status, setStatus] = useState<ChangeStatus>();
-  const [err, setErr] = useState<Error>();
+  const { methods = ["clipboard"] } = props;
+  const [status, setStatus] = useState<ChangeStatus>(null);
+  const [err, setErr] = useState<Error>(null);
 
   const copyText = useCallback(async (target: TextCopyTarget) => {
     try {
@@ -85,18 +80,6 @@ export const useCopyText = (props: ClipboardTextHooksProps) => {
     },
     [copyText, copyTarget, methods.join("-")]
   );
-
-  useEffect(() => {
-    setStatus(null);
-    setErr(null);
-  }, [target]);
-
-  useEffect(() => {
-    if (!target || !auto || disabled) {
-      return;
-    }
-    copy(target);
-  }, [target, auto, disabled, copy]);
 
   return { status, error: err, copy };
 };

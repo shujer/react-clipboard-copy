@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import {
   ChangeStatus,
   ClipboardImageHooksProps,
@@ -7,14 +7,9 @@ import {
 import { imageToBlob, interrupt, isSupportClipboardWrite } from "./utils";
 
 export const useCopyImage = (props: ClipboardImageHooksProps) => {
-  const {
-    target,
-    auto = false,
-    methods = ["clipboard"],
-    disabled = false,
-  } = props;
-  const [status, setStatus] = useState<ChangeStatus>();
-  const [err, setErr] = useState<Error>();
+  const { methods = ["clipboard"] } = props;
+  const [status, setStatus] = useState<ChangeStatus>(null);
+  const [err, setErr] = useState<Error>(null);
 
   const copyImage = useCallback(async (target: ImageCopyTarget) => {
     try {
@@ -58,18 +53,6 @@ export const useCopyImage = (props: ClipboardImageHooksProps) => {
     },
     [copyImage, methods.join("-")]
   );
-
-  useEffect(() => {
-    setStatus(null);
-    setErr(null);
-  }, [target]);
-
-  useEffect(() => {
-    if (!target || !auto || disabled) {
-      return;
-    }
-    copy(target);
-  }, [target, auto, disabled, copy]);
 
   return { status, error: err, copy };
 };
