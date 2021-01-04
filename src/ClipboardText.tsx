@@ -18,9 +18,6 @@ const ClipboardText: React.FC<ClipboardTextProps> = (props) => {
     propsTarget
   );
   const { copy, error, status } = useCopyText({
-    target,
-    auto: false,
-    disabled,
     methods,
   });
   const change = useRef<ClipboardTextProps["onChange"]>(onChange);
@@ -31,10 +28,10 @@ const ClipboardText: React.FC<ClipboardTextProps> = (props) => {
   }, [propsTarget]);
 
   useEffect(() => {
-    if (change.current) {
+    if (change.current && target && status) {
       change.current(status, error);
     }
-  }, [status, error]);
+  }, [status, error, target]);
 
   const child = isValidElement(children) ? children : <span>{children}</span>;
 

@@ -1,6 +1,6 @@
 {
   "name": "rc-clipboard-copy",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "copy image or text into clipboard",
   "module": "dist/rc-clipboard-copy.esm.js",
   "main": "dist/rc-clipboard-copy.js",

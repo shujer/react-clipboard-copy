@@ -16,9 +16,6 @@ const ClipboardImage: React.FC<ClipboardImageProps> = (props) => {
   } = props;
   const [target, setTarget] = useState<ImageCopyTarget>(propsTarget);
   const { copy, error, status } = useCopyImage({
-    target,
-    auto: false,
-    disabled,
     methods,
   });
   const change = useRef<ClipboardImageProps["onChange"]>(onChange);
@@ -31,10 +28,10 @@ const ClipboardImage: React.FC<ClipboardImageProps> = (props) => {
   }, [propsTarget]);
 
   useEffect(() => {
-    if (change.current) {
+    if (change.current && target && status) {
       change.current(status, error);
     }
-  }, [status, error]);
+  }, [status, error, target]);
 
   const child = isValidElement(children) ? children : <span>{children}</span>;
 

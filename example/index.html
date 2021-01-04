@@ -22,8 +22,8 @@
                 <div>
                     <img ref={ref => setImageRef(ref)} src="./assets/logo.png" />
                     <ClipboardImage
-                        target={imageRef}
                         disabled
+                        target={imageRef}
                         onChange={(s, e) => {
                             console.log('status', s)
                             if (e) {
@@ -34,7 +34,6 @@
                     </ClipboardImage>
                     <ClipboardText
                         target={"hello world"}
-                        disabled
                         methods={["clipboard", "execCommand"]}
                         onChange={(s, e) => {
                             console.log('status', s)

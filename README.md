@@ -17,7 +17,7 @@ npm install rc-clipboard-copy
 - use as component
 
 ```jsx
-import { ClipboardImage } from "rc-clipboard-copy";
+import { ClipboardImage, ClipboardText } from "rc-clipboard-copy";
 const App = () => {
   const [imageRef, setImageRef] = React.useState();
   return (
